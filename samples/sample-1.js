@@ -23,7 +23,7 @@ class Male extends Human {
 let bob = new Male('Bob');
 
 // Validation
-console.log('1. Species: ', bob.species);
-console.log('2. name: ', bob.name);
-bob.greet();
-bob.dance();
+console.log('1. Species: ', bob.species); //'Homo Sapiens'
+console.log('2. name: ', bob.name); // 'bob'
+bob.greet(); // 'I'm bob'
+bob.dance(); // 'disco time'

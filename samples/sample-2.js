@@ -1,7 +1,7 @@
 class FourSided {
     constructor(name) {
         this.numSides = 4;
-                this.name = name;
+        this.name = name;
     }
     area() {
         return this.height * this.width;
@@ -17,5 +17,5 @@ class Square extends FourSided{
 }
 
 let mySquare = new Square(4);
-console.log(mySquare.name);
-console.log(mySquare.area())
+console.log(mySquare.name); //'square'
+console.log(mySquare.area()) //'16'

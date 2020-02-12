@@ -9,4 +9,4 @@ class Dog {
  }
 
  let fido = new Dog();
- fido.remaining();
+ fido.remaining();  // fido does not have the "food.amount" property

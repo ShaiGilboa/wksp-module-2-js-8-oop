@@ -86,13 +86,15 @@ let yourCar = new Car();
 _The `this` keyword refers to the new object._
 
 ```js
-class Car {
-    constructor(brand) {
-        this.brand = brand;
+class Car { // convention to have this uppercased
+    constructor(brand, model) {
+        this.type = 'automobile';
+        this.brand = brand || ''; // setting a default value in case that there is no input when creating the class.
+        this.model = model || '';
     }
 }
 
-let myCar = new Car("Toyota");
+let myCar = new Car("Toyota", 'Corolla');
 let yourCar = new Car("Honda");
 ```
 
@@ -121,8 +123,8 @@ let montreal = new City(30000, "Montreal");
 let sanFransisco = new City(3, "San Fransisco");
 
 // What does the following output?
-console.log(montreal);
-console.log(sanFransisco);
+console.log(montreal); // (City) // {potholes: 30000, name: 'Montreal'}
+console.log(sanFransisco); // (City) // {potholes: 3, name: 'San Fransisco'}
 ```
 
 ---
@@ -134,12 +136,12 @@ Every instance of a class has a property that matches the method name and refers
 
 ```js
 class Car {
-    noise = () => console.log("Vrooom");
+    noise = () => console.log("Vrooom"); // HAVE TO USE THE ARROW FUNCTION. it gives access to the paretns 'this.'
 }
 
 let mazda = new Car();
 
-mazda.noise();
+mazda.noise(); // 'Vrooom'
 ```
 
 ---
@@ -149,7 +151,7 @@ class School {
     constructor(name) {
         this.name = name;
     }
-
+            // this.name - is how we reference the internal key 'name'
     noise = () => {
         console.log("...The sound of students growing...")
     }
@@ -157,10 +159,10 @@ class School {
 let concordiaBootcamps = new School('Concordia Bootcamps');
 
 // What does the following output?
-concordiaBootcamps.noise();
+concordiaBootcamps.noise(); // "...The sound of students growing..."
 
 // What do I have to type to output the name?
-
+concordiaBootcamps.name // 'Concordia Bootcamps'
 ```
 
 ---
@@ -212,13 +214,17 @@ let terrier = new Dog('yip!yip!');
 
 ```js
 class Car {
-    constructor() {
-        this.mileage = 0;
+    constructor(mileage) {
+        this.status = mileage > 0 ? 'used' : 'new';
+        this.mileage = mileage || 0;
     }
-    drive = () => { this.mileage = this.mileage + 10 }
+    drive = (amount) => {
+        this.mileage = this.mileage + amount;
+        this.status = 'used';
+        }
 }
 let myCar = new Car();
-myCar.drive(); 
+myCar.drive(100); 
 ```
 
 ---
@@ -230,8 +236,41 @@ myCar.drive();
 // 2. How could we represent varying hunger levels based on activity?
 // 3. How about when it eats?
 class Animal {
+    constructor(name) {
+        this.name = name;
+        thi.hungerLvl = 0;
+    }
 
+    play = () => {
+        this.hungerLvl += 20;
+    }
+
+    eat = () => {
+        this.hungerLvl -=20;
+    }
 }
+
+// class Animal {
+//     constructor (hunerLevel) {
+//         this.hungerLevel = hungerLevel || 0;
+//     }
+//     activity = (activity) => {
+//         switch (activity) {
+//             case 'eat':
+//                 this.eat(10);
+//                 break;
+//             case 'sleep':
+//                 this.hungerLevel = hungerLevel + 1;
+//                 break;
+//             case 'run':
+//                 this.hungerLevel = hungerLevel + 10;
+//                 break;
+//             default:
+//                 break;
+//         }
+//     }
+//     eat = (amount) => {hungerLevel = hungerLevel - amount || 0}
+// }
 
 ```
 
@@ -257,11 +296,13 @@ class Human {
 class Male extends Human {
     constructor(name) {
         super(); // call parent constructor to set the species
+        // whithout 'super()', we will not have the parent's constcrotur, but we will have the parant's methods.
         this.name = name;
     }
     greet = () => {
         console.log("I'm " + this.name);
     }
+        // if the extension has a method with the same name, it overrides the parent's method, and disregards it.
 }
 
 // Create a bob object that is a HUMAN MALE

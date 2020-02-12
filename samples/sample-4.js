@@ -7,4 +7,4 @@ class Student {
 }
 
 let bob = new Student();
-bob.writeCode();
+bob.writeCode(); // error, this.learn() does not exist

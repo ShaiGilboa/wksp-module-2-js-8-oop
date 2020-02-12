@@ -13,4 +13,4 @@ class Dog {
  }
 
  let fido = new Dog();
- fido.run();
+ fido.run();  // error, this.eat() does not exist

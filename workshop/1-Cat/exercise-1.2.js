@@ -9,3 +9,19 @@
 // and confirm that you have everything in there.
 
 // By the way, Boots is a Simaese cat...
+
+class Cat {
+    constructor (name, breed) {
+        this.name = name || '';
+        this.breed = breed || '';
+        this.tiredness = 0;
+        this.hunger = 0;
+        this.loneliness = 0;
+        this.happiness = 0;
+    }
+}
+
+// B) Instantiate a cat called 'boots' with the Cat class.
+const boots = new Cat('boots', 'Simaese');
+
+console.log(boots);
